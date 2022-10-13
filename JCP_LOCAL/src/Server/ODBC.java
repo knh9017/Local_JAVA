@@ -7,7 +7,7 @@ public class ODBC {
     static Connection conn;
     static Statement stmt;
 
-    public static void sql_signin(String uid,String pwd)
+    public static void sql_con(String uid,String pwd)
     {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -50,7 +50,7 @@ public class ODBC {
             String uid = sc.next();
             System.out.print("Password : ");
             String pwd = sc. next();
-            sql_signin(uid,pwd);
+            sql_con(uid,pwd);
             }
 
         sc.close();
