@@ -7,7 +7,7 @@ public class ODBC {
     static Connection conn;
     static Statement stmt;
 
-    public static void sql_con(String uid,String pwd)
+    public static void sql_con(String uid,String pwd)//pwd
     {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
