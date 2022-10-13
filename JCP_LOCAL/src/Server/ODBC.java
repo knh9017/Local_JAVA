@@ -1,17 +1,20 @@
+package Server;
 import java.sql.*;
 import java.util.Scanner;
 
 public class ODBC {
 
     static Connection conn;
+    static Statement stmt;
 
-    public static void sql_con(String uid,String pwd)
+    public static void sql_signin(String uid,String pwd)
     {
         try{
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 
             conn = DriverManager.getConnection(url, uid, pwd);
+            stmt = conn.createStatement();
             System.out.println("Connection Success");
             
         }
@@ -28,7 +31,8 @@ public class ODBC {
     {
         if( conn != null ){
             try{
-            conn.close();
+                stmt.close();
+                conn.close();
             }
             catch(SQLException e)
             {
@@ -37,20 +41,18 @@ public class ODBC {
         }
     }
 
-   public static void main(String[] args) {
+    public static void DB_con() {
 
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-    while(conn == null){
-        System.out.print("ID : ");
-        String uid = sc.next();
-        System.out.print("Password : ");
-        String pwd = sc. next();
-        sql_con(uid,pwd);
-        }
-
-
+        while(conn == null){
+            System.out.print("ID : ");
+            String uid = sc.next();
+            System.out.print("Password : ");
+            String pwd = sc. next();
+            sql_signin(uid,pwd);
+            }
 
         sc.close();
-   }
+    }
 }
